@@ -1,3 +1,4 @@
+import argparse
 import cv2
 from glob import glob
 from itertools import product
@@ -8,10 +9,8 @@ from scipy.special import erf
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from model.model import CompModel
-from opt import opt_test
 import arithmetic_coding as ac
 
 MAX_N = 65536
@@ -41,6 +40,7 @@ def load_model(args):
 
 def compress(args):
     comp_model = load_model(args)
+    os.makedirs('outputs/binary', exist_ok=True)
 
     if os.path.isdir(args.image_path):
         pathes = glob(os.path.join(args.image_path, '*'))
@@ -110,5 +110,13 @@ def compress(args):
 
 
 if __name__ == "__main__":
-    args = opt_test()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('model_path')
+    parser.add_argument('image_path')
+    
+    parser.add_argument('--bottleneck', type=int, default=32)
+    parser.add_argument('--main_channel', type=int, default=192)
+    parser.add_argument('--gmm_K', type=int, default=3)
+
+    args = parser.parse_args()
     compress(args)

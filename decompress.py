@@ -1,3 +1,4 @@
+import argparse
 import cv2
 from collections import OrderedDict
 from glob import glob
@@ -9,10 +10,8 @@ from scipy.special import erf
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from model.model import CompModel
-from opt import opt_test
 import arithmetic_coding as ac
 
 MAX_N = 65536
@@ -46,6 +45,7 @@ def load_model(args):
 
 def decompress(args):
     comp_model = load_model(args)
+    os.makedirs("outputs/reconstruction/", exist_ok=True)
     
     if os.path.isdir(args.binary_path):
         pathes = glob(os.path.join(args.binary_path, '*'))
@@ -114,5 +114,17 @@ def decompress(args):
 
 
 if __name__ == "__main__":
-    args = opt_test()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('model_path')
+    parser.add_argument('binary_path')
+    
+    parser.add_argument('--bottleneck', type=int, default=32)
+    parser.add_argument('--main_channel', type=int, default=192)
+    parser.add_argument('--gmm_K', type=int, default=3)
+
+    parser.add_argument('--use_net_interp', action='store_true')
+    parser.add_argument('--model_path2', type=str)
+    parser.add_argument('--interp_alpha', type=float)
+    
+    args = parser.parse_args()
     decompress(args)
