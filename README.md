@@ -2,8 +2,8 @@
 
 This repository is a PyTorch implemention of following paper:
 
-Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks
-arxiv url (https://)
+Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks\\
+arxiv url (https://)\\
 Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 
@@ -19,7 +19,7 @@ Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 ## Test
 Download our pretrained [model]() and unzip it. 
-
+`ckpt_model1_mse.pth` is trained in the first stage, and `ckpt_model1_gan.pth` is fine-tuned in the second stage. The compression rate of `ckpt_model1_*.pth` is higher than `ckpt_model2_*.pth`.
 ```
     python compress.py MODEL_PATH IMAGE_PATH
 ```
@@ -27,9 +27,23 @@ Compressed files will be stored at `outputs/binary`.
 ```
     python decompress.py MODEL_PATH BINARY_PATH
 ```
+For example, 
+```
+    python compress.py checkpoints/ckpt_model1_gan.pth images/
+    python decompress.py checkpoints/ckpt_model1_gan.pth outputs/binary
+```
 
-### Network Interpolation
+![](https://github.com/iwa-shi/fidelity_controllable_compression/blob/master/fig/others_compare_kodim21.pdf)
+
+#### Network Interpolation
 If you want to use network interpolation, run decompress_netinterp.py.
 ```
     python decompress_netinterp.py MODEL_PATH MODEL_PATH2 ALPHA BINARY_PATH
 ```
+For example, 
+```
+    python compress.py checkpoints/ckpt_model2_gan.pth images/
+    python decompress.py checkpoints/ckpt_model2_gan.pth checkpoints/ckpt_model2_mse.pth 0.8 outputs/binary
+```
+
+![](https://github.com/iwa-shi/fidelity_controllable_compression/blob/master/fig/interp_compare.pdf)
