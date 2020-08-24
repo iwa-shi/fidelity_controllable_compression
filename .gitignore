@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 
 /outputs
+.DS_Store
