@@ -25,26 +25,12 @@ def img_torch2np(img):
 def load_model(args):
     args.device = 'cpu'
     comp_model = CompModel(args)
-    # use network interpolation
-    if args.use_net_interp:
-        state_dict1 = torch.load(args.model_path, map_location='cpu')['comp_model']
-        state_dict2 = torch.load(args.model_path2, map_location='cpu')['comp_model']
-        state_dict_interp = OrderedDict()
-        for k in state_dict1:
-            if 'decoder' in k:
-                state_dict_interp[k] = args.interp_alpha * state_dict1[k] + (1 - args.interp_alpha) * state_dict2[k]
-            else:
-                state_dict_interp[k] = state_dict1[k]
-        comp_model.load_state_dict(state_dict_interp)
-
-    else:
-        state_dict = torch.load(args.model_path, map_location='cpu')
-        comp_model.load_state_dict(state_dict['comp_model'])
+    state_dict = torch.load(args.model_path, map_location='cpu')
+    comp_model.load_state_dict(state_dict['comp_model'])
     comp_model.eval()
     return comp_model
 
-def decompress(args):
-    comp_model = load_model(args)
+def decompress(comp_model, args):
     os.makedirs("outputs/reconstruction/", exist_ok=True)
     
     if os.path.isdir(args.binary_path):
@@ -77,7 +63,7 @@ def decompress(args):
 
         with torch.no_grad():
             with tqdm(product(range(yH), range(yW)), 
-                        ncols=80, total=yH*yW, desc='encode y') as qbar:
+                        ncols=80, total=yH*yW) as qbar:
                 samples = np.arange(0, min_val*2+1).reshape(-1, 1)
                 for h, w in qbar:
                     p = comp_model.contextmodel.parameter_estimate(y_hat_pad[:, :, h:h+3, w:w+5])
@@ -121,10 +107,7 @@ if __name__ == "__main__":
     parser.add_argument('--bottleneck', type=int, default=32)
     parser.add_argument('--main_channel', type=int, default=192)
     parser.add_argument('--gmm_K', type=int, default=3)
-
-    parser.add_argument('--use_net_interp', action='store_true')
-    parser.add_argument('--model_path2', type=str)
-    parser.add_argument('--interp_alpha', type=float)
     
     args = parser.parse_args()
-    decompress(args)
+    comp_model = load_model(args)
+    decompress(comp_model, args)
