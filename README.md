@@ -2,8 +2,8 @@
 
 This repository is a PyTorch implemention of following paper:
 
-Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks\\
-arxiv url (https://)\\
+Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks  
+arxiv url (https://)  
 Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 
@@ -18,7 +18,7 @@ Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 ```
 
 ## Test
-Download our pretrained [model]() and unzip it. 
+Download our pretrained [model]() and unzip it.  
 `ckpt_model1_mse.pth` is trained in the first stage, and `ckpt_model1_gan.pth` is fine-tuned in the second stage. The compression rate of `ckpt_model1_*.pth` is higher than `ckpt_model2_*.pth`.
 ```
     python compress.py MODEL_PATH IMAGE_PATH
