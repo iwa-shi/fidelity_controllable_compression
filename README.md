@@ -45,5 +45,5 @@ For example,
     python compress.py checkpoints/ckpt_model2_gan.pth images/
     python decompress.py checkpoints/ckpt_model2_gan.pth checkpoints/ckpt_model2_mse.pth 0.8 outputs/binary
 ```
-
+You can balance the distortion-perception trade-off by changing $$alpha$$.
 ![](https://github.com/iwa-shi/fidelity_controllable_compression/blob/master/fig/interp_compare.pdf)
