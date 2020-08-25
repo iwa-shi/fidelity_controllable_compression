@@ -19,12 +19,12 @@ Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 ## Pretrained Model
 Download our pretrained [model]() and unzip it.  
-`ckpt_model*_mse.pth` is trained in the first stage, and `ckpt_model*_gan.pth` is fine-tuned in the second stage. The two models share the same encoder.
+`ckpt_model*_mse.pth` is trained in the first stage, and `ckpt_model*_gan.pth` is fine-tuned in the second stage. These two models share the same encoder.
 
-|  model name | Average bitrate (Kodak dataset) |
-| ------------- | ------------------------|
-| ckpt_model1_*.pth |  0.0299 bpp |
-| ckpt_model2_*.pth |  0.0623 bpp |
+|  model name | Average bitrate (Kodak) |
+| ------------- | :----------------------:|
+| ckpt_model1_mse.pth |  0.0299 bpp | 
+| ckpt_model2_mse.pth |  0.0623 bpp |
 
 
 ## Test 
@@ -42,7 +42,7 @@ For example,
 ```
 
 #### Network Interpolation
-If you want to use network interpolation, run decompress_netinterp.py.
+If you want to use network interpolation, run `decompress_netinterp.py`.
 ```
     python decompress_netinterp.py MODEL_PATH MODEL_PATH2 ALPHA BINARY_PATH
 ```
