@@ -18,13 +18,13 @@ Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 ```
 
 ## Pretrained Model
-Download our pretrained [model]() and unzip it.  
+Download our pretrained [model](https://drive.google.com/file/d/1RHphLaixbcRq7-CQrYLwOlkoCXn7rCrs/view?usp=sharing) and unzip it.  
 `ckpt_model*_mse.pth` is trained in the first stage, and `ckpt_model*_gan.pth` is fine-tuned in the second stage. These two models share the same encoder.
 
 |  model name | Average bitrate (Kodak) |
 | ------------- | :----------------------:|
-| ckpt_model1_mse.pth |  0.0299 bpp | 
-| ckpt_model2_mse.pth |  0.0623 bpp |
+| ckpt_model1_*.pth |  0.0299 bpp | 
+| ckpt_model2_*.pth |  0.0623 bpp |
 
 
 ## Test 
