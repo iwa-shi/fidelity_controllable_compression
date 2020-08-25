@@ -2,7 +2,7 @@
 
 This repository is a PyTorch implemention of following paper:  
 Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks  
-arxiv url (https://)  
+arxiv url (https://arxiv.org/abs/2008.10314)  
 Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 
@@ -42,7 +42,7 @@ If you want to use network interpolation, run decompress_netinterp.py.
 For example, 
 ```
     python compress.py checkpoints/ckpt_model2_gan.pth images/
-    python decompress.py checkpoints/ckpt_model2_gan.pth checkpoints/ckpt_model2_mse.pth 0.8 outputs/binary
+    python decompress_netinterp.py checkpoints/ckpt_model2_gan.pth checkpoints/ckpt_model2_mse.pth 0.8 outputs/binary
 ```
 You can balance the trade-off between distortion and perception by changing alpha.
 ![](https://github.com/iwa-shi/fidelity_controllable_compression/blob/master/fig/interp_compare.png)
