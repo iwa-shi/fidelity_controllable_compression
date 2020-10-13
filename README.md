@@ -2,7 +2,7 @@
 
 This repository is a PyTorch implemention of following paper:  
 Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks  
-arxiv url (https://arxiv.org/abs/2008.10314)  
+ICPR2020 Accepted  [(arxiv)](https://arxiv.org/abs/2008.10314)  
 Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
 
 ![](https://github.com/iwa-shi/fidelity_controllable_compression/blob/master/fig/others_compare_kodim21.png)
