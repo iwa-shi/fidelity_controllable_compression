@@ -1,6 +1,6 @@
 # Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks
 
-This repository is a PyTorch implemention of following paper:  
+This repository is a PyTorch implementation of following paper:  
 Fidelity-Controllable Extreme Image Compression with Generative Adversarial Networks  
 ICPR2020 Accepted  [(arxiv)](https://arxiv.org/abs/2008.10314)  
 Shoma Iwai, Tomo Miyazaki, Yoshihiro Sugaya, and Shinichiro Omachi
@@ -26,6 +26,12 @@ Download our pretrained [model](https://drive.google.com/file/d/1RHphLaixbcRq7-C
 | ckpt_model1_*.pth |  0.0299 bpp | 
 | ckpt_model2_*.pth |  0.0623 bpp |
 
+## Train
+```
+    python train.py ./config/default.json
+```
+Learned weights will be stored at `checkpoint/{exp}/model`.
+Note that, `train.py` is a very simple training code with minimal functionality.
 
 ## Test 
 ```
