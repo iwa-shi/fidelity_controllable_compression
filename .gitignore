@@ -126,3 +126,6 @@ dmypy.json
 
 /outputs
 .DS_Store
+
+.vscode
+test.py

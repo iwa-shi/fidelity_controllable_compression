@@ -1,0 +1,22 @@
+{
+    "exp": "exp1",
+    "image_dir": "path/to/image/dataset",
+    "checkpoint_dir": "./checkpoint",
+    "device": "cuda:0",
+    "batch_size": 8,
+    "total_iter1": 500000,
+    "total_iter2": 300000,
+    "lr": 0.00002,
+    "lr_half_step": [150000, 300000],
+    "d_lr": 0.00002,
+    "d_lr_half_step": [150000],
+    "save_step": 10000,
+    "print_step": 100,
+    "lamb_mse1": 0.5,
+    "lamb_mse2": 0.5,
+    "lamb_adv": 0.05,
+    "lamb_vgg": 1,
+    "bottleneck": 32,
+    "main_channel": 192,
+    "gmm_K": 3
+}
