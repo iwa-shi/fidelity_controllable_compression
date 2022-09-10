@@ -96,8 +96,8 @@ class ContextModel(nn.Module):
         bc = self.bitcost(y_hat, p)
         return bc
 
-    def parameter_estimate(self, y_hat):
-        a = self.mask_conv1(y_hat)
+    def parameter_estimate(self, y_hat, padding=True):
+        a = self.mask_conv1(y_hat, padding=padding)
         a = self.actv(a)
         a = self.c1(a)
         a = self.actv(a)
@@ -105,6 +105,16 @@ class ContextModel(nn.Module):
         a = self.actv(a)
         p = self.c3(a)
         return p
+
+    def get_gmm_params(self, y_hat):
+        p = self.parameter_estimate(y_hat, padding=False)
+        p = p.numpy()
+        p = np.reshape(p, (1, self.K, self.bottleneck*3, 1, 1))
+        mu = p[:, :, :self.bottleneck, 0, 0]
+        std = np.abs(p[:, :, self.bottleneck:2*self.bottleneck, 0, 0])
+        w = p[:, :, 2*self.bottleneck:, 0, 0]
+        w = np.exp(w) / np.sum(np.exp(w), axis=1) #softmax
+        return mu, std, w
 
     def bitcost(self, y_hat, p):
         N, _, H, W = p.size()

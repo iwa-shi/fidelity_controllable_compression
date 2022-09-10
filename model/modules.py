@@ -119,7 +119,8 @@ class MaskConv2d(nn.Module):
         mask = torch.from_numpy(mask).unsqueeze(0)
         return mask
 
-    def forward(self, x):
-        x = self.padding(x)
+    def forward(self, x, padding=True):
+        if padding:
+            x = self.padding(x)
         self.conv.weight.data = self.conv.weight.data * self.mask
         return self.conv(x)

@@ -129,3 +129,5 @@ dmypy.json
 
 .vscode
 test.py
+test_codec.py
+old/

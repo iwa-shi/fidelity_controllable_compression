@@ -42,5 +42,4 @@ class CompModel(nn.Module):
     def compress(self, x):
         y = self.encoder(x)
         _, y_hard = self.quantizer(y)
-        param = self.contextmodel.parameter_estimate(y_hard)
-        return y_hard, param
+        return y_hard
